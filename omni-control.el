@@ -26,30 +26,44 @@
 
 ;;; Building Notes:
 
+;; §maybe: quickly require bindkey? or see how to batch declara command binds.
 
+(defcustom oc:error-max-count 5 "Number of consecutive commands that force to go back to normal \"flight conditions\"."
+ :group 'omni-control :type 'numeric)
+(defvar oc:error-count 0 "Consecutive number of wrong command.")
 
 (defvar omni-control-mode-map
   (let ((map (make-sparse-keymap)))
-    (suppress-keymap map t) ; vire les self insert key
-    (define-key map [remap self-insert-command] 'oc:no-command)
+    (suppress-keymap map t) ; vire les self insert key [du coup garde autres bindings]
+    (define-key map [remap self-insert-command] 'oc:no-command) ;; remplace self insert by commande spécifiée
     map))
 
-(defun oc:no-command ()
+(defun oc:no-command()
   "Warn no command"
+  (interactive) ;; should not be called directly. maybe use a lambda?
   ;; §todo: disable mode after some time.
-  (message "Not such control on the handlever!"))
+  (if (< oc:error-count oc:error-max-count)
+      (progn
+	(message "Not such control on the handlever!")
+	(setq oc:error-count (1+ oc:error-count)))
+      (progn
+	(message "You drive like a fool, manual control disabled!")
+	(setq oc:error-count 0)
+	(omni-control-mode -1))))
 
-(defun a ()
-  "DOCSTRING"
-  (interactive)
-  (message "a") (notify "a" "a"))
+(defun a () (interactive) (message "a") (notify "a" "a"))
+(define-key omni-control-mode-map "a" 'a)
+(lookup-key omni-control-mode-map "b") ; consulte commande
 
-(define-key  omni-control-mode-map "a" 'a  )
-(lookup-key omni-control-mode-map "b")
 
-(use-local-map omni-control-mode-map)
+;; commands to create
+;; ¤note §todo: storye this in generic set? (to try them, then select)
 
-(use-local-map nil) ; for disabling
+
+
+;; ¤doc: To set map:
+;; (use-local-map omni-control-mode-map)
+;; (use-local-map nil) ; for disabling
 
 ;;;###autoload
 (define-minor-mode omni-control-mode
@@ -57,7 +71,8 @@
   nil ;init-value
   :lighter " <=>"
   :keymap omni-control-mode-map
-  ;; maybe hooks
+  ;; §maybe hooks
+  ;; §maybe: change some color?
   (message "NOP"))
 
 
