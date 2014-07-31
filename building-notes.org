@@ -1,0 +1,60 @@
+
+* Name:
+omni-control for now.
+Maybe: *omni-lever, joystock, nav?*
+[dont hesitate to rename]
+
+trouver un catchy name, du genre:
+(idée manette avion que du sors d'un coup pour avoir meilleur manabilitée)
+# à fond les manettes -> full tilt
+handlever -> manette [Tech.]
+joystick -> manette
+shifter -> manette de vitesse
+gear shifter -> manette de vitesse
+force feedback joystick -> manette de jeu à force de réaction
+lever -> levier
+
+
+* What:
+
+** G1
+>> Quick navigation map <<
+
+easy to launch
+
+Enter this mode, and bam. set de command assez proche permettent de naviger facilement just'à entrée ou autre pour sortir
+En gros juste mode map.
+réfléchir aux bonnes combos de touches. (vim like. arré, ligne)
+(un peu grossier auniveau des touches.
+Grauiant de touches??
+middle row +1, up +5, down -1
+
+>>> hooker sur highlight symbol and co. comme ça navigue avec une touche
+
+Adapter pour org. connecter facilement à quelquechose pour cycler les tags, naviger dans la structure
+see org-goto
+
+lancer avec combo ¤& par example
+
+
+** G2
+utiliser xclap? (ce qui change touche quand presser d'un coup vs tenue (shit
+[lancer depuis touches du bas]
+
+Idée: lettre, motr ligne, paragraphe, azer/uiop (mirroir ou pas?) (flixw pour inverser
+ajouter écran (ça fait les 10 touches d'une row)
+
+aussi gérer les orgmodes: up/next/prev(+sibling) : fliter
+
+faire plutot un block, comme ça à une main: haut avant, bas arrière.  puis main gauche plus pour des recheches
+
+pluusieurs modes possibles, et aussi géréer la disposition clavier!!
+
+* Autres
+
+
+voir god-mode
+Create a minor mode, and put the desired functions in its map. Enable the mode to make the functions accessible, and once done, disable the mode.
+-> purcell.
+¤note: should not inherit from main one.
+set-transient-map, which allows you to set a temporary keymap that takes precedence over all others. When it gets turned off is customizable.
