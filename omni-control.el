@@ -60,6 +60,25 @@
 ;; ¤note §todo: storye this in generic set? (to try them, then select)
 
 
+(defvar oc:panel-proto
+  '(("ESC" . omni-control-mode)
+    ("a" . ace-jump-line-mode)
+    ("z" . ace-jump-word-mode)
+    ("e" . ace-jump-char-mode)
+
+    ;; uiop forward
+    ;; jklm backward
+    ))
+(defun oc:load-panel (panel)
+  "Populate keymap with given PANEL"
+  (interactive)
+  ;; §later: reinit keymap
+  ;; §later: format check. [unless this is made a custom]
+  (mapc (lambda (cell)
+	  (define-key omni-control-mode-map (car cell) (cdr cell))
+	  ) panel)
+  omni-control-mode-map)
+(oc:load-panel oc:panel-proto)
 
 ;; ¤doc: To set map:
 ;; (use-local-map omni-control-mode-map)
