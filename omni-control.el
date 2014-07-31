@@ -28,5 +28,38 @@
 
 
 
+(defvar omni-control-mode-map
+  (let ((map (make-sparse-keymap)))
+    (suppress-keymap map t) ; vire les self insert key
+    (define-key map [remap self-insert-command] 'oc:no-command)
+    map))
+
+(defun oc:no-command ()
+  "Warn no command"
+  ;; §todo: disable mode after some time.
+  (message "Not such control on the handlever!"))
+
+(defun a ()
+  "DOCSTRING"
+  (interactive)
+  (message "a") (notify "a" "a"))
+
+(define-key  omni-control-mode-map "a" 'a  )
+(lookup-key omni-control-mode-map "b")
+
+(use-local-map omni-control-mode-map)
+
+(use-local-map nil) ; for disabling
+
+;;;###autoload
+(define-minor-mode omni-control-mode
+  "Temporary fast control modes."
+  nil ;init-value
+  :lighter " <=>"
+  :keymap omni-control-mode-map
+  ;; maybe hooks
+  (message "NOP"))
+
+
 (provide 'omni-control)
 ;;; omni-control.el ends here

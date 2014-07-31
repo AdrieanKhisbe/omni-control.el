@@ -37,6 +37,7 @@ see org-goto
 
 lancer avec combo ¤& par example
 
+maybe: control for faster
 
 ** G2
 utiliser xclap? (ce qui change touche quand presser d'un coup vs tenue (shit
