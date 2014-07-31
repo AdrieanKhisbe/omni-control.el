@@ -3,6 +3,7 @@
 omni-control for now.
 Maybe: *omni-lever, joystock, nav?*
 [dont hesitate to rename]
+§why: et pourquoi pas omni-tool??? [ si en plus le connecte à scratch etc??]
 
 trouver un catchy name, du genre:
 (idée manette avion que du sors d'un coup pour avoir meilleur manabilitée)
