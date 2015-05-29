@@ -21,12 +21,15 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
+;;
 ;; Some inspiration where found on very good `god-mode' about the keymap implementation
 ;;
 
 ;;; Building Notes:
 
 ;; §maybe: quickly require bindkey? or see how to batch declara command binds.
+
+;;; Code:
 
 (defcustom oc:error-max-count 5 "Number of consecutive commands that force to go back to normal \"flight conditions\"."
  :group 'omni-control :type 'numeric)
@@ -45,12 +48,12 @@
   ;; §todo: disable mode after some time.
   (if (< oc:error-count oc:error-max-count)
       (progn
-	(wmessage "Not such control on the handlever!")
-	(setq oc:error-count (1+ oc:error-count)))
+        (wmessage "Not such control on the handlever!")
+        (setq oc:error-count (1+ oc:error-count)))
       (progn
-	(wmessage "You drive like a fool, manual control disabled!")
-	(setq oc:error-count 0)
-	(omni-control-mode -1))))
+        (wmessage "You drive like a fool, manual control disabled!")
+        (setq oc:error-count 0)
+        (omni-control-mode -1))))
 
 ;; (lookup-key omni-control-mode-map "
 
@@ -97,7 +100,7 @@
   ;; §later: reinit keymap -> maybe not if different panel defined and combined!!
   ;; §later: format check. [unless this is made a custom]
   (mapc (lambda (cell)
-	  (define-key omni-control-mode-map (car cell) (cdr cell))) panel)
+          (define-key omni-control-mode-map (car cell) (cdr cell))) panel)
   ;; return command map.
   omni-control-mode-map)
 
@@ -122,6 +125,7 @@
 
 ;; ¤helper
 (defun wmessage (message)
+  "Print MESSAGE with given face."
   (message (propertize message 'face 'font-lock-keyword-face)))
 
 (provide 'omni-control)
