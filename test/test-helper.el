@@ -32,7 +32,7 @@
      (f-delete default-directory :force)))
 
 (require 'ert)
-(require 'omni-control (f-expand "omni-control" omni-control-root-path))
+(require 'omni-control)
 
 (provide 'test-helper)
 ;;; test-helper.el ends here
