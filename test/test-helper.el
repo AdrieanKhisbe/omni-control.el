@@ -34,5 +34,4 @@
 (require 'ert)
 (require 'omni-control)
 
-(provide 'test-helper)
 ;;; test-helper.el ends here
